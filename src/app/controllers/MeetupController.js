@@ -6,8 +6,7 @@ import User from '../models/User';
 
 class MeetupController {
   async index(req, res) {
-    const user_id = req.userId;
-    const where = { user_id };
+    const where = {};
     const page = req.query.page || 1;
 
     if (req.query.date) {

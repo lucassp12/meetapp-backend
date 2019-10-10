@@ -4,7 +4,7 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncremet: true,
+        autoIncrement: true,
         primaryKey: true,
       },
       meetup_id: {
@@ -33,6 +33,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('subscription');
+    return queryInterface.dropTable('subscriptions');
   },
 };

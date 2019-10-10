@@ -11,11 +11,11 @@ class SubscriptionController {
     });
 
     if (!meetup) {
-      return res.status(400).json({ error: "Can't subscribe to past meetups" });
+      return res.status(400).json({ error: 'Meetup not exists' });
     }
 
     if (meetup.past) {
-      return res.status(400).json({ error: 'Meetup not exists' });
+      return res.status(400).json({ error: "Can't subscribe to past meetups" });
     }
 
     const checkDate = await Subscription.findOne({

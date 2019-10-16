@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/index.js",
-    "queue": "nodemon src/queue.js"
+    "start": "node src/app.js",
+    "queue": "node src/queue.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

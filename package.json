@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/app.js",
-    "queue": "node src/queue.js"
+    "start": "node dist/server.js",
+    "queue": "node dist/queue.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

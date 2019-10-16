@@ -1,3 +1,3 @@
 build: yarn build
-web: yarn start
-queue: yarn queue
+web: npm start
+queue: npm queue

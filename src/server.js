@@ -1,3 +1,3 @@
 import app from './app';
 
-app.listen(3335);
+app.listen(process.env.PORT || 3000);

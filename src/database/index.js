@@ -11,7 +11,14 @@ const models = [User, File, Meetup, Subscription];
 
 class Database {
   constructor() {
-    this.connection = new Sequelize(databaseConfig);
+    this.connection = new Sequelize(databaseConfig.url, {
+      dialectOptions: {
+        ssl: true,
+        timestamps: true,
+        underscored: true,
+        underscoredAll: true,
+      },
+    });
     this.init();
     this.associate();
   }

@@ -15,6 +15,9 @@ class File extends Model {
       },
       {
         sequelize,
+        timestamps: true,
+        underscored: true,
+        underscoredAll: true,
       }
     );
     return this;

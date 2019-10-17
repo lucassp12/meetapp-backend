@@ -1,6 +1,4 @@
-"use strict";
-
-module.exports = {
+"use strict";module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('files', {
       id: {

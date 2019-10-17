@@ -37,11 +37,11 @@
         type: Sequelize.DATE,
         allowNull: false,
       },
-      created_at: {
+      created_At: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updated_At: {
         type: Sequelize.DATE,
         allowNull: false,
       },

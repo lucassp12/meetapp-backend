@@ -6,6 +6,9 @@ class Subscription extends Model {
       {},
       {
         sequelize,
+        timestamps: true,
+        underscored: true,
+        underscoredAll: true,
       }
     );
   }

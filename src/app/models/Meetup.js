@@ -18,6 +18,9 @@ class Meetup extends Model {
       },
       {
         sequelize,
+        timestamps: true,
+        underscored: true,
+        underscoredAll: true,
       }
     );
   }

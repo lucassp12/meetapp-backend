@@ -9,7 +9,7 @@
       },
       meetup_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'meetups', key: 'id' },
+        references: { model: 'Meetups', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,

@@ -11,7 +11,14 @@ const models = [_User2.default, _File2.default, _Meetup2.default, _Subscription2
 
 class Database {
   constructor() {
-    this.connection = new (0, _sequelize2.default)(_database2.default);
+    this.connection = new (0, _sequelize2.default)(_database2.default.url, {
+      dialectOptions: {
+        ssl: true,
+        timestamps: true,
+        underscored: true,
+        underscoredAll: true,
+      },
+    });
     this.init();
     this.associate();
   }

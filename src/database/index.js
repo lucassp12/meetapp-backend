@@ -13,7 +13,7 @@ class Database {
   constructor() {
     this.connection = new Sequelize(databaseConfig.url, {
       dialectOptions: {
-        ssl: true,
+        ssl: false,
         timestamps: true,
         underscored: true,
         underscoredAll: true,

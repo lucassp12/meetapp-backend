@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/server.js",
-    "queue": "node dist/queue.js"
-  },
+    "dev": "nodemon -L src/server.js",
+    "build": "sucrase ./src -d ./build --transforms imports",
+    "start": "node build/server.js",
+    "queue": "node build/queue.js",
+    "migration": "sequelize-cli db:migrate"
+    },
   "dependencies": {
     "bcrypt": "^3.0.6",
     "bee-queue": "^1.2.2",

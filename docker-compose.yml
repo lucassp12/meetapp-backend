@@ -1,37 +1,56 @@
 version: '3.3'
 
 services:
-  postgres:
-    container_name: postgres
+  meetapp_postgres:
+    container_name: meetapp_postgres
     image: postgres:12
+    networks:
+      meetapp:
+        aliases:
+          - postgres
     ports:
       - 5432:5432
     volumes:
-      - /userlogin/postgres/data/:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=docker
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
 
-  redis:
-    container_name: redis
+  meetapp_redis:
+    container_name: meetapp_redis
+    networks:
+      meetapp:
+        aliases:
+          - redis
     image: redis:5
     volumes:
-      - /userlogin/redis/data/:/data
+      - redis-data:/data
 
-  node:
-    container_name: node
+  meetapp_node:
+    container_name: meetapp_node
     build:
       context: .
-      dockerfile: ./docker/node.dockerfile
+      dockerfile: ./docker/node/Dockerfile
+    networks:
+      meetapp:
     ports:
       - 3333:3333
-    environment:
-      NODE_ENV: production
-    command: bash -c 'yarn migration && yarn start'
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+      - /home/app/build
+    command: yarn dev
     depends_on:
-      - redis
-      - postgres
+      - meetapp_postgres
+      - meetapp_redis
     links:
-      - redis
-      - postgres
+      - meetapp_postgres
+      - meetapp_redis
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  meetapp:

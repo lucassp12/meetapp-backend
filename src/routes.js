@@ -3,6 +3,10 @@ import multer from 'multer';
 import multerConfig from './config/multer';
 
 import authMiddleware from './app/middlewares/auth';
+import validationMiddleware from './app/middlewares/validation';
+
+import userStoreSchema from './app/schemas/User/Store';
+import userUpdateSchema from './app/schemas/User/Store';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -17,11 +21,21 @@ const upload = multer(multerConfig);
 routes.get('/', (req, res) => {
   return res.json('Hellow');
 });
-routes.post('/users', UserController.store);
+
+routes.post(
+  '/users',
+  validationMiddleware(userStoreSchema),
+  UserController.store
+);
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
-routes.put('/users', UserController.update);
+routes.put(
+  '/users',
+  validationMiddleware(userUpdateSchema),
+  UserController.update
+);
+routes.get('/user', UserController.show);
 
 routes.get('/meetups', MeetupController.index);
 routes.post('/meetups', MeetupController.store);

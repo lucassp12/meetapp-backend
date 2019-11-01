@@ -6,7 +6,12 @@ import authMiddleware from './app/middlewares/auth';
 import validationMiddleware from './app/middlewares/validation';
 
 import userStoreSchema from './app/schemas/User/Store';
-import userUpdateSchema from './app/schemas/User/Store';
+import userUpdateSchema from './app/schemas/User/Update';
+
+import sessionStoreSchema from './app/schemas/Session/Store';
+
+import meetupStoreSchema from './app/schemas/Meetup/Store';
+import meetupUpdateSchema from './app/schemas/Meetup/Update';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -27,7 +32,11 @@ routes.post(
   validationMiddleware(userStoreSchema),
   UserController.store
 );
-routes.post('/sessions', SessionController.store);
+routes.post(
+  '/sessions',
+  validationMiddleware(sessionStoreSchema),
+  SessionController.store
+);
 
 routes.use(authMiddleware);
 routes.put(
@@ -38,8 +47,16 @@ routes.put(
 routes.get('/user', UserController.show);
 
 routes.get('/meetups', MeetupController.index);
-routes.post('/meetups', MeetupController.store);
-routes.put('/meetups/:id', MeetupController.update);
+routes.post(
+  '/meetups',
+  validationMiddleware(meetupStoreSchema),
+  MeetupController.store
+);
+routes.put(
+  '/meetups/:id',
+  validationMiddleware(meetupUpdateSchema),
+  MeetupController.update
+);
 routes.delete('/meetups/:id', MeetupController.delete);
 
 routes.get('/organizing', OrganizingController.index);
